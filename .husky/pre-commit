@@ -1,0 +1,10 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+cd ./client && yarn lint-staged --no-stash
+
+cd ..
+if [ -f "$(dirname "$0")/_/phpcs.sh" ]; then
+    bash "$(dirname "$0")/_/phpcs.sh"
+else
+    echo "PHP linter config does not exist."
+fi
